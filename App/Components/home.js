@@ -2,6 +2,8 @@ import React, {
   AppRegistry,
   Component,
   StyleSheet,
+      layoutAnimation,
+      TouchableWithoutFeedback,
   Text,
   Image,
       ScrollView,
@@ -11,8 +13,12 @@ import React, {
 class Home extends React.Component {
         constructor(props) {
          super(props);
+         this.state={
+         title:'Podcasts',
+         }
 
      }
+    
     render(){
     return(
         <View style={styles.container}>
