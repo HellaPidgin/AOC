@@ -30,8 +30,11 @@ class AoC extends Component {
 
      return (
     <NavigatorIOS
-      initialRoute={{
-        component: Home,
+         style={styles.container}
+          navigationBarHidden={true}
+         initialRoute={{
+         component: Home,
+         
         title: 'My View Title',
         passProps: { myProp: 'foo' },
       }}
@@ -45,9 +48,8 @@ class AoC extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+ 
+  
   },
   welcome: {
     fontSize: 20,
