@@ -10,6 +10,8 @@ import React, {
   View
 } from 'react-native';
 
+var Play =  require("./play");
+
 class Home extends React.Component {
         constructor(props) {
          super(props);
@@ -28,22 +30,43 @@ class Home extends React.Component {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
         this.setState({
         navTouch:{
-        height: this.state.navTouch.height > 60 ? 60 : 360
-        }
+        height: this.state.navTouch.height > 60 ? 60 : 320
+        },
+        title: this.state.navTouch.height > 60 ? 'Podcasts' : 'Main Menu'
+        
         })
     }
-    onViewLayout(){
-    this.setState({})
+    playAudio(){
+    this.props.navigator.push({
+    title: 'Play',
+     component: Play,
+    });
     }
+  
     render(){
         let navTouch = [styles.nav, this.state.navTouch];
     return(
         <View style={styles.container}>
         <TouchableWithoutFeedback onPress={this.animateNav.bind(this)}>
            <View style={navTouch}>
-               <View style={{margin:15, flexDirection:'row'}}>
-            <Text style={styles.white}>Podcasts</Text>
+               <View style={{marginTop:15, flexDirection:'row'}}>
+            <Text style={styles.whitexl}>{this.state.title}</Text>
         <Image source={require('image!down')} resizeMode="contain" style={styles.icon} /></View>
+            <View style={{margin:15, flexDirection:'row'}}>
+            <Text style={styles.white}>Podcasts</Text>
+        </View>
+            <View style={{margin:15, flexDirection:'row'}}>
+            <Text style={styles.white}>Bootcamp</Text>
+        </View>
+            <View style={{margin:15, flexDirection:'row'}}>
+            <Text style={styles.white}>Wingman?</Text>
+        </View>
+            <View style={{margin:15, flexDirection:'row'}}>
+            <Text style={styles.white}>Blog</Text>
+        </View>
+            <View style={{margin:15, flexDirection:'row'}}>
+            <Text style={styles.white}>Sam's Amazing?</Text>
+        </View>
         </View></TouchableWithoutFeedback>
     <ScrollView style={styles.body}>    
         <View style={styles.recomends}>
@@ -71,7 +94,8 @@ class Home extends React.Component {
             <Text style={styles.sectTitle}>THE PODCAST FEED</Text>
             <ScrollView  contentContainerStyle={styles.row} horizontal={true}
              automaticallyAdjustContentInsets={false} vertical={false}>
-                <View><Image source={require('image!linda')} resizeMode="contain" style={styles.boxImage} /> 
+                <View>
+                  <TouchableWithoutFeedback onPress={this.playAudio.bind(this)}><View><Image source={require('image!linda')} resizeMode="contain" style={styles.boxImage} /></View></TouchableWithoutFeedback >
                     <Image source={require('image!44')} resizeMode="contain" style={styles.boxImage} />
                     </View>
                     <View><Image source={require('image!kamp')} resizeMode="contain" style={styles.boxImage} /> 
@@ -174,12 +198,17 @@ const styles = StyleSheet.create({
      nav: {
          height:60,
          backgroundColor: '#202224',
-         justifyContent: 'center',
-         flexDirection: 'row',
+         justifyContent: 'flex-start',
+         flexDirection: 'column',
          marginTop: 20,
-         alignItems: 'flex-start',
+         alignItems: 'center',
 
      }, white: {
+         color: "#fff",
+         fontSize: 16,
+     
+
+     },whitexl: {
          color: "#fff",
          fontSize: 20,
      
