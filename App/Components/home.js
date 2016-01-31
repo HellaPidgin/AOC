@@ -2,7 +2,7 @@ import React, {
   AppRegistry,
   Component,
   StyleSheet,
-      layoutAnimation,
+      LayoutAnimation,
       TouchableWithoutFeedback,
   Text,
   Image,
@@ -25,10 +25,10 @@ class Home extends React.Component {
     
     animateNav(){
     //let callback = this.onViewLayout.bind(this);
-    //LayoutAnimation.configureNext(LayoutAnimation.Presets.spring, callback())
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
         this.setState({
         navTouch:{
-        height:300
+        height: this.state.navTouch.height > 60 ? 60 : 360
         }
         })
     }
@@ -41,9 +41,9 @@ class Home extends React.Component {
         <View style={styles.container}>
         <TouchableWithoutFeedback onPress={this.animateNav.bind(this)}>
            <View style={navTouch}>
-               
+               <View style={{margin:15, flexDirection:'row'}}>
             <Text style={styles.white}>Podcasts</Text>
-        <Image source={require('image!down')} resizeMode="contain" style={styles.icon} />
+        <Image source={require('image!down')} resizeMode="contain" style={styles.icon} /></View>
         </View></TouchableWithoutFeedback>
     <ScrollView style={styles.body}>    
         <View style={styles.recomends}>
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
      }, white: {
          color: "#fff",
          fontSize: 20,
-         margin:15
+     
 
      },
      welcome: {
