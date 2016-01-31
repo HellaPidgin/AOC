@@ -15,18 +15,36 @@ class Home extends React.Component {
          super(props);
          this.state={
          title:'Podcasts',
-         }
+         navTouch:
+             {
+             height:60
+             }
 
      }
+        }
     
+    animateNav(){
+    //let callback = this.onViewLayout.bind(this);
+    //LayoutAnimation.configureNext(LayoutAnimation.Presets.spring, callback())
+        this.setState({
+        navTouch:{
+        height:300
+        }
+        })
+    }
+    onViewLayout(){
+    this.setState({})
+    }
     render(){
+        let navTouch = [styles.nav, this.state.navTouch];
     return(
         <View style={styles.container}>
-        
-           <View style={styles.nav}>
+        <TouchableWithoutFeedback onPress={this.animateNav.bind(this)}>
+           <View style={navTouch}>
+               
             <Text style={styles.white}>Podcasts</Text>
         <Image source={require('image!down')} resizeMode="contain" style={styles.icon} />
-        </View>
+        </View></TouchableWithoutFeedback>
     <ScrollView style={styles.body}>    
         <View style={styles.recomends}>
             <View style={styles.scrollV}><Text style={styles.sectTitle}>RECOMENDED EPISODES</Text>
@@ -154,16 +172,17 @@ const styles = StyleSheet.create({
 
      },
      nav: {
-         flex: 1,
+         height:60,
          backgroundColor: '#202224',
          justifyContent: 'center',
          flexDirection: 'row',
          marginTop: 20,
-         alignItems: 'center',
+         alignItems: 'flex-start',
 
      }, white: {
          color: "#fff",
          fontSize: 20,
+         margin:15
 
      },
      welcome: {
